@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%9D%84%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<title>Refrigeración de equipos de cómputo · SENA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<button class="tg" id="tg" aria-label="Cambiar entre modo claro y oscuro">◐</button>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Un computador fresco rinde más y dura años</h1>
+      <p>Mueve los controles y mira cómo la carga, el polvo y el tipo de refrigeración cambian la temperatura de un equipo en tiempo real.</p>
+      <a class="btn" href="#sim">Probar el simulador</a>
+    </div>
+    <div class="badge"><img src="logo.png" alt="Logo del SENA"></div>
+  </div>
+</header>
+
+<main>
+<section id="sim">
+  <div class="wrap">
+    <h2>Simulador de temperatura</h2>
+    <p class="lead">Ajusta cómo se usa el equipo y qué sistema de refrigeración tiene. El modelo es una simplificación, pero muestra la tendencia real.</p>
+    <div class="panel">
+      <div>
+        <div class="ctl"><label for="load">Carga del procesador <output id="o-load"></output></label><input id="load" type="range" min="0" max="100" value="60"></div>
+        <div class="ctl"><label for="dust">Polvo acumulado <output id="o-dust"></output></label><input id="dust" type="range" min="0" max="100" value="30"></div>
+        <div class="ctl"><label for="amb">Temperatura del cuarto <output id="o-amb"></output></label><input id="amb" type="range" min="20" max="40" value="30"></div>
+        <fieldset class="ctl"><legend>Sistema de refrigeración</legend>
+          <div class="seg">
+            <label><input type="radio" name="t" value="aire" checked><span>Aire</span></label>
+            <label><input type="radio" name="t" value="liquida"><span>Líquida</span></label>
+            <label><input type="radio" name="t" value="pasiva"><span>Pasiva</span></label>
+          </div>
+          <p class="hint" id="thint"></p>
+        </fieldset>
+      </div>
+      <div class="disp" id="disp" aria-live="polite">
+        <div><span class="temp"><span id="temp">0</span><small>°C</small></span><span class="state" id="state"></span></div>
+        <div class="track"><div class="mark" id="mark"></div></div>
+        <div class="scale"><span>20 °C</span><span>60 °C</span><span>90 °C</span><span>110 °C</span></div>
+        <div class="row">
+          <svg class="fan" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3" opacity=".35"/><g id="fan" fill="#39A900"><path d="M50 50 C38 30 44 8 50 8 C56 8 62 30 50 50Z"/><path d="M50 50 C70 38 92 44 92 50 C92 56 70 62 50 50Z"/><path d="M50 50 C62 70 56 92 50 92 C44 92 38 70 50 50Z"/><path d="M50 50 C30 62 8 56 8 50 C8 44 30 38 50 50Z"/></g><circle cx="50" cy="50" r="8" fill="#0B2A05"/></svg>
+          <div class="stats"><div><b id="rpm">0</b><span>RPM del ventilador</span></div><div><b id="perf">100%</b><span>Rendimiento</span></div></div>
+        </div>
+        <p class="tip" id="tip"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid2">
+    <div class="card">
+      <h2>Tu rutina de mantenimiento</h2>
+      <p class="lead">Marca lo que ya hiciste. Si limpias el polvo, el simulador lo refleja.</p>
+      <label class="chk"><input type="checkbox" data-dust="1"><span>Limpiar el polvo con aire comprimido<em>Cada 3 a 6 meses</em></span></label>
+      <label class="chk"><input type="checkbox"><span>Revisar que los ventiladores giren libres<em>Cada 6 meses</em></span></label>
+      <label class="chk"><input type="checkbox"><span>Limpiar filtros de polvo de la caja<em>Cada mes</em></span></label>
+      <label class="chk"><input type="checkbox"><span>Cambiar la pasta térmica<em>Cada 2 a 4 años</em></span></label>
+      <label class="chk"><input type="checkbox"><span>Revisar temperaturas con HWMonitor o HWiNFO<em>Cuando note lentitud o ruido</em></span></label>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="pb"><i id="pbi"></i></div>
+      <p class="hint" id="pbt">0 de 5 tareas hechas</p>
+    </div>
+    <div class="card">
+      <h2>Ponte a prueba</h2>
+      <p class="lead" id="qn"></p>
+      <h3 id="qq" style="font-size:1.25rem"></h3>
+      <div id="qo"></div>
+      <p id="fb" aria-live="polite"></p>
+      <button class="btn" id="next" style="display:none">Siguiente pregunta</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><img src="logo.png" alt=""><span>Actividad 1 de investigación: refrigeración en equipos de cómputo. SENA.</span></div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
